@@ -10,17 +10,24 @@ services:
      - ./api/app/:/app
     ports:
      - 8778:80
-#  db:
-#    image: postgres:15-alpine
-#    container_name: db
-#    volumes:
-#    - postgres_dict_data:/var/lib/postgresql/data/
-#    ports:
-#     - "5434:5432"
-#    environment:
-#       POSTGRES_USER: root
-#       POSTGRES_PASSWORD: root
-#       POSTGRES_DB: postgres_db
+    networks:
+     - myBeautifulDict
+  pgdb:
+    image: postgres:15-alpine
+    container_name: pgdb
+    volumes:
+    - postgres_dict_data:/var/lib/postgresql/data/
+    ports:
+     - "5434:5432"
+    environment:
+       POSTGRES_USER: root
+       POSTGRES_PASSWORD: root
+       POSTGRES_DB: dict_db
+    networks:
+     - myBeautifulDict
 
-#volumes:
-#  postgres_dict_data:
+volumes:
+  postgres_dict_data:
+
+networks:
+  myBeautifulDict:

@@ -6,7 +6,7 @@ from sqlalchemy import select, text
 import asyncio
 
 from dbengine import async_session_macker
-from users.model import Users
+from api.app.src.users.models import Users
 
 async def test_connection():
     async with async_session_macker() as session:

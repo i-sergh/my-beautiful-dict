@@ -1,20 +1,18 @@
 from fastapi import FastAPI, Response
 from random import randint
 from time import asctime
+from users.router import router as users_router
 
 app = FastAPI(
     title = 'Dict'
     )
 
+app.include_router(users_router)
 
 @app.get('/')
 async def start_page():
     return {'ping': 'now cc'}
 
-@app.post('/create-new-user')
-def create_new_user(new_user_data):
-
-    return Response(content={'code':200, 'result':'success', 'new_user':'new_user_data' })
 
 
 @app.get('/new_word')
